@@ -1,8 +1,8 @@
 ![](./images/EGH_Redux-New-cover.png)
 
-# Getting Started with Redux
+# Getting Started with Redux - Notes and Code Snippets
 
-This repository includes notes and code snippets from an excellent course: Getting Started with Redux (https://egghead.io/courses/getting-started-with-redux) by Dan Abramov.
+This repository includes notes and code snippets from an excellent course: **Getting Started with Redux** (https://egghead.io/courses/getting-started-with-redux) by **Dan Abramov**.
 
 You can also play with the code snippets at: http://codepen.io/collection/AKkZNE/
 
