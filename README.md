@@ -4,7 +4,8 @@
 
 This repository includes notes and code snippets from an excellent course: **Getting Started with Redux** (https://egghead.io/courses/getting-started-with-redux) by **Dan Abramov**.
 
-You can also play with the code snippets at: http://codepen.io/collection/AKkZNE/
+You can play with final app at: http://codepen.io/PiotrBerebecki/pen/gwZpQd
+All code snippets are available at: http://codepen.io/collection/AKkZNE/ or https://medium.com/@justin3737/getting-started-with-redux-dded45556673#.60ll51i47
 
 Ideas covered include:
 
