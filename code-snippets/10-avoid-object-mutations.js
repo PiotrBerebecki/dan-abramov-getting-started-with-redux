@@ -1,7 +1,5 @@
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 console.clear();
 
 // Assets:
@@ -17,10 +15,11 @@ console.clear();
 // <script src="https://wzrd.in/standalone/deep-freeze@latest" />
 
 var toggleTodo = function toggleTodo(todo) {
-  // Solution (ES7)
-  return _extends({}, todo, {
-    completed: !todo.completed
-  });
+  // Solution (Object spread syntax)
+  return {
+    ...todo,
+    completed: !todo.completed,
+  };
 
   // Solution
   // 'the last argument in Object.assign() wins'
@@ -31,12 +30,12 @@ var testToggleToDo = function testToggleToDo() {
   var todoBefore = {
     id: 0,
     text: 'Learn Redux',
-    completed: false
+    completed: false,
   };
   var todoAfter = {
     id: 0,
     text: 'Learn Redux',
-    completed: true
+    completed: true,
   };
   deepFreeze(todoBefore);
   expect(toggleTodo(todoBefore)).toEqual(todoAfter);

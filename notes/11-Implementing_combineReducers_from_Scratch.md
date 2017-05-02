@@ -15,29 +15,22 @@ Since each reducer that is run through `combineReducers()` is responsible for on
 
 The array reduce wants us to return the next accumulated value from the callback (i.e. `nextState`). We also specify an empty object as the initial next state before all the keys are processed.
 
-```Javascript
-const combineReducers = reducers => {
+```javascript
+const combineReducers = (reducers) => {
   return (state = {}, action) => {
-
     // Reduce all the keys for reducers from `todos` and `visibilityFilter`
-    return Object.keys(reducers).reduce(
-      (nextState, key) => {
-        // Call the corresponding reducer function for a given key
-        nextState[key] = reducers[key] (
-          state[key],
-          action
-        );
-        return nextState;
-      },
-      {} // The `reduce` on our keys gradually fills this empty object until it is returned.
-    );
+    return Object.keys(reducers).reduce((nextState, key) => {
+      // Call the corresponding reducer function for a given key
+      nextState[key] = reducers[key](state[key],action);
+      return nextState;
+    }, {}); // The `reduce` on our keys gradually fills this empty object until it is returned.
   };
 };
 ```
 
 Call combineReducers with an object whose values are the reducer functions and keys are state fields they manage.
 
-```JavaScript
+```javaScript
 const todoApp = combineReducers({
   todos,
   visibilityFilter

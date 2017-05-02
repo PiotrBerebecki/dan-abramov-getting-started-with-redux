@@ -18,7 +18,10 @@ var addCounter = function addCounter(list) {
   // can't use push on the original array as it mutates the array
 
   // Solution
-  return [].concat(list, [0]);
+  return [...list, 0];
+
+  // Solution
+  // return [].concat(list, [0]);
 
   // Solution
   // return list.concat([0]); // prevent mutation with concat
@@ -48,7 +51,11 @@ var incrementCounter = function incrementCounter(list, index) {
   // cannot do list[index]++ as it mutates the original array
 
   // Solution
-  return [].concat(list.slice(0, index), [list[index] + 1], list.slice(index + 1));
+  return [].concat(
+    list.slice(0, index),
+    [list[index] + 1],
+    list.slice(index + 1)
+  );
 
   // Solution
   // return list

@@ -1,7 +1,3 @@
-'use strict';
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 console.clear();
 
 // Assets:
@@ -16,17 +12,17 @@ console.clear();
 // - Deep Freeze
 // <script src="https://wzrd.in/standalone/deep-freeze@latest" />
 
-var todo = function todo(state, action) {
+const todo = (state, action) => {
   switch (action.type) {
     case 'ADD_TODO':
       return {
         id: action.id,
         text: action.text,
-        completed: false
+        completed: false,
       };
     case 'TOGGLE_TODO':
       if (state.id === action.id) {
-        return _extends({}, state, { completed: !state.completed });
+        return { ...state, completed: !state.completed };
       }
       return state;
     default:
@@ -34,26 +30,18 @@ var todo = function todo(state, action) {
   }
 };
 
-var todos = function todos() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
-  var action = arguments[1];
-
+const todos = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
-      return [].concat(state, [todo(undefined, action)]);
+      return [...state, todo(undefined, action)];
     case 'TOGGLE_TODO':
-      return state.map(function (t) {
-        return todo(t, action);
-      });
+      return state.map(t => todo(t, action));
     default:
       return state;
   }
 };
 
-var visibilityFilter = function visibilityFilter() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? 'SHOW_ALL' : arguments[0];
-  var action = arguments[1];
-
+const visibilityFilter = (state = 'SHOW_ALL', action) => {
   switch (action.type) {
     case 'SET_VISIBILITY_FILTER':
       return action.filter;
@@ -62,12 +50,11 @@ var visibilityFilter = function visibilityFilter() {
   }
 };
 
-var _Redux = Redux;
-var combineReducers = _Redux.combineReducers;
+const { combineReducers } = Redux;
 
-var todoApp = combineReducers({
-  todos: todos,
-  visibilityFilter: visibilityFilter
+const todoApp = combineReducers({
+  todos,
+  visibilityFilter,
 });
 // The above uses  ES6 'object literal property value shorhand'
 
@@ -79,10 +66,8 @@ var todoApp = combineReducers({
 //   };
 // };
 
-var _Redux2 = Redux;
-var createStore = _Redux2.createStore;
-
-var store = createStore(todoApp);
+const { createStore } = Redux;
+const store = createStore(todoApp);
 
 console.log('Initial State');
 console.log(store.getState());
@@ -92,7 +77,7 @@ console.log('Dispatch ADD_TODO.');
 store.dispatch({
   id: 0,
   text: 'Learn Redux',
-  type: 'ADD_TODO'
+  type: 'ADD_TODO',
 });
 console.log('Current State');
 console.log(store.getState());
@@ -102,7 +87,7 @@ console.log('Dispatch ADD_TODO.');
 store.dispatch({
   id: 1,
   text: 'Go Shopping',
-  type: 'ADD_TODO'
+  type: 'ADD_TODO',
 });
 console.log('Current State');
 console.log(store.getState());
@@ -111,7 +96,7 @@ console.log('-------------');
 console.log('Dispatch TOGGLE_TODO.');
 store.dispatch({
   id: 0,
-  type: 'TOGGLE_TODO'
+  type: 'TOGGLE_TODO',
 });
 console.log('Current State');
 console.log(store.getState());
@@ -120,7 +105,7 @@ console.log('-------------');
 console.log('Dispatch SET_VISIBILITY_FILTER.');
 store.dispatch({
   type: 'SET_VISIBILITY_FILTER',
-  filter: 'SHOW_COMPLETE'
+  filter: 'SHOW_COMPLETE',
 });
 console.log('Current State');
 console.log(store.getState());
